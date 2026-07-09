@@ -1,9 +1,19 @@
 {
   "version": 2,
-  "rewrites": [
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "@vercel/node@3",
+      "maxDuration": 30
+    }
+  },
+  "headers": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/voice-session.js"
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
     }
   ]
 }
